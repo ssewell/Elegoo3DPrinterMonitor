@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
+import '../components/ProgressBar.css';
 import Printer from 'components/Printer';
 
 export default function App() {
