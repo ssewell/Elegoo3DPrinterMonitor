@@ -3,12 +3,12 @@
 /* eslint-disable guard-for-in */
 import dgram from 'dgram';
 import os from 'os';
-import { BrowserWindow, ipcMain } from 'electron';
+import { BrowserWindow } from 'electron';
 
 const PORT = 3000;
 const requestStatusMessage = Buffer.from('M99999');
 const socket = dgram.createSocket('udp4');
-const BROADCAST_INTERVAL = 3000; // 3 seconds
+const BROADCAST_INTERVAL = 1000; // 1 second
 
 socket.bind(PORT, () => {
   socket.setBroadcast(true);
