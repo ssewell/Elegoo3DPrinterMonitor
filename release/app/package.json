@@ -1,0 +1,16 @@
+{
+  "name": "elegoo-3d-printer-monitor",
+  "version": "0.1.0",
+  "description": "Provides Status of Elegoo 3D Printers with Wifi Support",
+  "license": "CC-BY-SA-4.0",
+  "author": {
+    "name": "Shane Sewell"
+  },
+  "main": "./dist/main/main.js",
+  "scripts": {
+    "rebuild": "node -r ts-node/register ../../.erb/scripts/electron-rebuild.js",
+    "postinstall": "npm run rebuild && npm run link-modules",
+    "link-modules": "node -r ts-node/register ../../.erb/scripts/link-modules.ts"
+  },
+  "dependencies": {}
+}
