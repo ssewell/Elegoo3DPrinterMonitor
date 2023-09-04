@@ -3,6 +3,7 @@
 /* eslint-disable guard-for-in */
 import dgram from 'dgram';
 import os from 'os';
+import { BrowserWindow, ipcMain } from 'electron';
 
 const PORT = 3000;
 const requestStatusMessage = Buffer.from('M99999');
@@ -44,7 +45,7 @@ export function createUDPClient() {
   }, BROADCAST_INTERVAL);
 }
 
-export function createUDPServer() {
+export function createUDPServer(windowRef: BrowserWindow) {
   socket.on('listening', () => {
     const address = socket.address();
     console.log(`UDP Server listening on ${address.address}:${address.port}`);
@@ -55,8 +56,9 @@ export function createUDPServer() {
       return;
     }
 
-    console.log('Remote address:', remote.address);
-    console.log('Received data:', message.toString());
+    console.log('Got data from address:', remote.address);
+
+    windowRef.webContents.send('update-printers', message.toString());
   });
 
   socket.on('error', (error) => {

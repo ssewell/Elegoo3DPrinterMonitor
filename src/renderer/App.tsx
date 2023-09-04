@@ -1,23 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import { ipcRenderer } from 'electron';
 
 export default function App() {
   const [data, setData] = useState({});
 
-  // useEffect(() => {
-  //   ipcRenderer.on('udp-data', (udpData: any) => {
-  //     console.log(udpData);
-  //     // setData((prevData) => ({
-  //     //   ...prevData,
-  //     //   [udpData.Id]: udpData,
-  //     // }));
-  //   });
-  // }, []);
+  useEffect(() => {
+    window.electron.ipcRenderer.on('update-printers', (udpData: any) => {
+      const udpDataJson = JSON.parse(udpData);
+      setData((prevData) => ({
+        ...prevData,
+        [udpDataJson.Id]: udpDataJson,
+      }));
+    });
+  }, []);
 
   return (
     <div className="App">
-      <h1>Received Packets</h1>
+      <h1>3D Printer Status</h1>
       {Object.entries(data).map(([id, value]) => (
         <div key={id}>
           <strong>Sender ID:</strong> {id}

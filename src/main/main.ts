@@ -84,6 +84,9 @@ const createWindow = async () => {
 
   mainWindow.loadURL(resolveHtmlPath('index.html'));
 
+  createUDPServer(mainWindow); // Process to listen for UDP responses
+  createUDPClient(); // Process that periodically broadcasts request for status updates
+
   mainWindow.on('ready-to-show', () => {
     if (!mainWindow) {
       throw new Error('"mainWindow" is not defined');
@@ -129,8 +132,6 @@ app
   .whenReady()
   .then(() => {
     createWindow();
-    createUDPServer(); // Process to listen for UDP responses
-    createUDPClient(); // Process that periodically broadcasts request for status updates
     app.on('activate', () => {
       // On macOS it's common to re-create a window in the app when the
       // dock icon is clicked and there are no other windows open.
