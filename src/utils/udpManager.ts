@@ -19,10 +19,13 @@ function getLocalIPs() {
   const addresses = [];
 
   for (const k in interfaces) {
-    for (const k2 in interfaces[k]) {
-      const address = interfaces[k][k2];
-      if (address.family === 'IPv4' && !address.internal) {
-        addresses.push(address.address);
+    const ipInterface = interfaces[k];
+    if (ipInterface) {
+      for (const k2 in ipInterface) {
+        const address = ipInterface[k2];
+        if (address.family === 'IPv4' && !address.internal) {
+          addresses.push(address.address);
+        }
       }
     }
   }
