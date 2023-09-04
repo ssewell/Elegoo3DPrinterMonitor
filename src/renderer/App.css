@@ -4,12 +4,40 @@
  */
 body {
   position: relative;
-  color: white;
+  color: #eee;
   height: 100vh;
-  background: black;
+  background: #111;
   font-family: sans-serif;
   overflow-y: hidden;
   display: flex;
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
+}
+
+.printer-item {
+  background-color: #333;
+  padding: 30px;
+  border-radius: 10px;
+  display: flex;
+  height: 300px;
+  width: 600px;
+}
+
+.printer-attributes {
+  flex-grow: 1;
+  padding: 30px;
+}
+
+.subtle {
+  font-size: 0.8em;
+  color: #aaa;
+}
+
+.label {
+  color: #aaa;
+}
+
+.printer-icon,
+.printer-icon img {
+  height: 100%;
 }
