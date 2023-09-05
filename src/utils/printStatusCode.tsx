@@ -4,7 +4,7 @@ export function getPrintStatusForCode(statusCode: number) {
   if (statusCode === 0) {
     status = 'Ready';
   } else if (statusCode === 1) {
-    status = 'Busy';
+    status = 'Preparing';
   } else if (statusCode === 2) {
     status = 'Retracting';
   } else if (statusCode === 3) {
