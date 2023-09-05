@@ -118,6 +118,18 @@ export default class MenuBuilder {
           },
         },
         {
+          label: 'Debug Mode',
+          type: 'checkbox',
+          checked: false,
+          click: (menuItem: { checked: any }) => {
+            const focusedWindow = BrowserWindow.getFocusedWindow();
+            focusedWindow?.webContents.send(
+              'toggle-user-debug',
+              menuItem.checked
+            );
+          },
+        },
+        {
           label: 'Toggle Developer Tools',
           accelerator: 'Alt+Command+I',
           click: () => {
@@ -134,6 +146,18 @@ export default class MenuBuilder {
           accelerator: 'Ctrl+Command+F',
           click: () => {
             this.mainWindow.setFullScreen(!this.mainWindow.isFullScreen());
+          },
+        },
+        {
+          label: 'Debug Mode',
+          type: 'checkbox',
+          checked: false,
+          click: (menuItem: { checked: any }) => {
+            const focusedWindow = BrowserWindow.getFocusedWindow();
+            focusedWindow?.webContents.send(
+              'toggle-user-debug',
+              menuItem.checked
+            );
           },
         },
       ],
@@ -223,6 +247,18 @@ export default class MenuBuilder {
                   },
                 },
                 {
+                  label: 'Debug Mode',
+                  type: 'checkbox',
+                  checked: false,
+                  click: (menuItem: { checked: any }) => {
+                    const focusedWindow = BrowserWindow.getFocusedWindow();
+                    focusedWindow?.webContents.send(
+                      'toggle-user-debug',
+                      menuItem.checked
+                    );
+                  },
+                },
+                {
                   label: 'Toggle &Developer Tools',
                   accelerator: 'Alt+Ctrl+I',
                   click: () => {
@@ -237,6 +273,18 @@ export default class MenuBuilder {
                   click: () => {
                     this.mainWindow.setFullScreen(
                       !this.mainWindow.isFullScreen()
+                    );
+                  },
+                },
+                {
+                  label: 'Debug Mode',
+                  type: 'checkbox',
+                  checked: false,
+                  click: (menuItem: { checked: any }) => {
+                    const focusedWindow = BrowserWindow.getFocusedWindow();
+                    focusedWindow?.webContents.send(
+                      'toggle-user-debug',
+                      menuItem.checked
                     );
                   },
                 },

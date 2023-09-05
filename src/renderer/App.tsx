@@ -6,6 +6,7 @@ import { PrinterItem } from 'types/PrinterTypes';
 
 export default function App() {
   const [data, setData] = useState<Record<string, PrinterItem>>({});
+  const [debugMode, setDebugMode] = useState(false);
 
   useEffect(() => {
     return window.electron.ipcRenderer.on('update-printers', (udpData: any) => {
@@ -17,10 +18,19 @@ export default function App() {
     });
   }, []);
 
+  useEffect(() => {
+    return window.electron.ipcRenderer.on(
+      'toggle-user-debug',
+      (enabled: any) => {
+        setDebugMode(enabled);
+      }
+    );
+  }, []);
+
   return (
     <div className="App">
       {Object.entries(data).map(([id, value]) => (
-        <Printer key={id} item={value} />
+        <Printer key={id} item={value} debug={debugMode} />
       ))}
     </div>
   );

@@ -5,7 +5,13 @@ import PrinterIcon from './PrinterIcon';
 import PrinterStatus from './PrinterStatus';
 import ProgressBar from './ProgressBar';
 
-export default function Printer({ item }: { item: PrinterItem }) {
+export default function Printer({
+  item,
+  debug,
+}: {
+  item: PrinterItem;
+  debug: boolean;
+}) {
   const attr = item.Data.Attributes;
   const status = item.Data.Status.PrintInfo;
 
@@ -45,9 +51,7 @@ export default function Printer({ item }: { item: PrinterItem }) {
           )}
         </div>
       </div>
-      {/* <div>
-        debug: <pre>{JSON.stringify(item, null, 2)}</pre>
-      </div> */}
+      {debug && <pre>{JSON.stringify(item, null, 2)}</pre>}
     </>
   );
 }

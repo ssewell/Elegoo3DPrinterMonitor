@@ -2,7 +2,7 @@
 /* eslint no-unused-vars: off */
 import { contextBridge, ipcRenderer, IpcRendererEvent } from 'electron';
 
-export type Channels = 'update-printers';
+export type Channels = 'update-printers' | 'toggle-user-debug';
 
 const electronHandler = {
   ipcRenderer: {
