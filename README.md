@@ -1,6 +1,6 @@
 # Elegoo 3D Printer Monitor
 
-This application will automatically discover and display the print status of any Elegoo MLSA Printers on your network.
+This application will automatically discover and display the print status of any Elegoo MLSA Printers (that come with built-in Wi-Fi) on your network.
 ![Example Screenshot](https://github.com/ssewell/Elegoo3DPrinterMonitor/assets/2242776/2f41356e-6b1b-40b9-9c00-47d6e905ce75)
 
 ## Installation
