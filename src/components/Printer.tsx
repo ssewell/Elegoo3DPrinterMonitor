@@ -39,6 +39,8 @@ export default function Printer({ item }: { item: PrinterItem }) {
                 indicatorColor={getColorForStatusCode(status.Status)}
               />
               <div className="current-file">{status.Filename}</div>
+              <div className="subtle">{status.CurrentLayer} Layers Printed</div>
+              <div className="subtle">{status.TotalLayer} Total Layers</div>
             </>
           )}
         </div>

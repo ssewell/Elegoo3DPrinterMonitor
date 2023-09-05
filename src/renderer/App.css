@@ -80,7 +80,7 @@ body {
   text-align: center;
   white-space: nowrap;
   text-overflow: ellipsis;
-  margin-top: 20px;
+  margin: 20px auto 20px auto;
 }
 
 /* Badges */
