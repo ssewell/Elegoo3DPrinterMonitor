@@ -25,5 +25,5 @@ This application has only been tested with an Elegoo Mars 4 Ultra, but may work 
 
 If you have access to a wifi-enabled Elegoo 3D printer, you may notice that the application works but does not display the appropriate image for your printer. If this happens, please open an issue, include the debugging information for your printer, and I will add the appropriate mapping data.
 
-You can access debugging information by turning on _Debug Mode_ under the _View_ menu. Enabling this feature will display all the data you printer is reporting below the main section for each printer instance.
+You can access debugging information by turning on _Debug Mode_ under the _View_ menu. Enabling this feature will display all the data your printer is reporting below the main section for each printer instance.
 ![Debug Mode](https://github.com/ssewell/Elegoo3DPrinterMonitor/assets/2242776/c7384156-d524-4e51-b041-6e7a89db7785)
