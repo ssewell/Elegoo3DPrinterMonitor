@@ -8,7 +8,7 @@ export default function App() {
   const [data, setData] = useState<Record<string, PrinterItem>>({});
 
   useEffect(() => {
-    window.electron.ipcRenderer.on('update-printers', (udpData: any) => {
+    return window.electron.ipcRenderer.on('update-printers', (udpData: any) => {
       const udpDataJson = JSON.parse(udpData);
       setData((prevData) => ({
         ...prevData,
