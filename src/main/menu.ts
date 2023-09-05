@@ -157,13 +157,17 @@ export default class MenuBuilder {
         {
           label: 'Learn More',
           click() {
-            shell.openExternal('https://electronjs.org');
+            shell.openExternal(
+              'https://github.com/ssewell/Elegoo3DPrinterMonitor'
+            );
           },
         },
         {
           label: 'Search Issues',
           click() {
-            shell.openExternal('https://github.com/electron/electron/issues');
+            shell.openExternal(
+              'https://github.com/ssewell/Elegoo3DPrinterMonitor/issues'
+            );
           },
         },
       ],
@@ -244,13 +248,17 @@ export default class MenuBuilder {
           {
             label: 'Learn More',
             click() {
-              shell.openExternal('https://electronjs.org');
+              shell.openExternal(
+                'https://github.com/ssewell/Elegoo3DPrinterMonitor'
+              );
             },
           },
           {
             label: 'Search Issues',
             click() {
-              shell.openExternal('https://github.com/electron/electron/issues');
+              shell.openExternal(
+                'https://github.com/ssewell/Elegoo3DPrinterMonitor/issues'
+              );
             },
           },
         ],
