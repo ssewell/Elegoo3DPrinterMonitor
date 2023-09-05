@@ -5,13 +5,14 @@
 body {
   position: relative;
   color: #eee;
-  height: 100vh;
+
   background: #111;
-  font-family: sans-serif;
-  overflow-y: hidden;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  overflow-y: auto;
   display: flex;
   justify-content: center;
-  /* align-items: center; */
 }
 
 /* 3D Printer Layout */
@@ -66,13 +67,28 @@ body {
   flex-grow: 1;
   padding: 30px;
   align-self: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.current-file {
+  font-size: 0.75em;
+  max-width: 190px;
+  overflow: hidden;
+  text-align: center;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  margin-top: 20px;
 }
 
 /* Badges */
 .badge {
   display: inline-block;
   padding: 0.2em 0.8em 0.2em 0.8em;
-  border-radius: 10px;
+  border-radius: 30px;
+  color: #64c25c;
 }
 
 .badge-idle {

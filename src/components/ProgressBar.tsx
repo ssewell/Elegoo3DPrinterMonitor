@@ -1,4 +1,20 @@
-export default function ProgressBar(props: any) {
+import React, { ReactNode } from 'react';
+
+interface ProgressBarProps {
+  size?: number;
+  progress?: number;
+  trackWidth?: number;
+  trackColor?: string;
+  indicatorWidth?: number;
+  indicatorColor?: string;
+  indicatorCap?: 'round' | 'inherit' | 'butt' | 'square' | undefined;
+  label?: ReactNode | string;
+  labelColor?: string;
+  spinnerMode?: boolean;
+  spinnerSpeed?: number;
+}
+
+export default function ProgressBar(props: ProgressBarProps) {
   const {
     size = 150,
     progress = 0,
@@ -8,7 +24,7 @@ export default function ProgressBar(props: any) {
     indicatorColor = `#07c`,
     indicatorCap = `round`,
     label = `Loading...`,
-    labelColor = `#333`,
+    labelColor = `#eee`,
     spinnerMode = false,
     spinnerSpeed = 1,
   } = props;
@@ -19,7 +35,10 @@ export default function ProgressBar(props: any) {
   const dashArray = 2 * Math.PI * radius;
   const dashOffset = dashArray * ((100 - progress) / 100);
 
-  const hideLabel = !!(size < 100 || !label.length || spinnerMode);
+  const hideLabel =
+    size < 100 ||
+    (typeof label === 'string' ? !label.length : false) ||
+    spinnerMode;
 
   return (
     <div className="svg-pi-wrapper" style={{ width: size, height: size }}>
@@ -37,7 +56,7 @@ export default function ProgressBar(props: any) {
           className={`svg-pi-indicator ${
             spinnerMode ? 'svg-pi-indicator--spinner' : ''
           }`}
-          style={{ animationDuration: spinnerSpeed * 1000 }}
+          style={{ animationDuration: `${spinnerSpeed}s` }}
           cx={center}
           cy={center}
           fill="transparent"
