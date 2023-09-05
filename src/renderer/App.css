@@ -120,9 +120,9 @@ body {
   width: 10px;
   top: 50%;
   transform: translateY(-50%);
-  background-color: #369;
+  background-color: #07c;
   border-radius: 10px;
-  animation: blink 1s infinite alternate-reverse ease-out;
+  animation: blink 1s infinite alternate-reverse ease-in-out;
 }
 @keyframes blink {
   from {

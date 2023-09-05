@@ -31,10 +31,10 @@ export function getPrintStatusForCode(statusCode: number) {
 }
 
 export function getColorForStatusCode(statusCode: number) {
-  let color = '#07c'; // Default default color
+  let color = '#07c'; // Default blue color
 
-  if (statusCode === 0) {
-    color = '#ccc';
+  if (statusCode === 0 || statusCode === 7) {
+    color = '#999'; // Gray when idle or paused
   } else if ((statusCode >= 5 && statusCode <= 6) || statusCode === 9) {
     color = '#c2b85c'; // Yellow during pausing or cancelling
   } else if (statusCode === 13) {
