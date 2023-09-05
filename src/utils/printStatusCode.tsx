@@ -31,7 +31,7 @@ export function getPrintStatusForCode(statusCode: number) {
 }
 
 export function getColorForStatusCode(statusCode: number) {
-  let color = '#ddd'; // Default default color
+  let color = '#07c'; // Default default color
 
   if (statusCode === 0) {
     color = '#ccc';
