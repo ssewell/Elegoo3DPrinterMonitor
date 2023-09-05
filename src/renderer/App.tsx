@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import '../components/ProgressBar.css';
 import Printer from 'components/Printer';
+import { PrinterItem } from 'types/PrinterTypes';
 
 export default function App() {
-  const [data, setData] = useState({});
+  const [data, setData] = useState<Record<string, PrinterItem>>({});
 
   useEffect(() => {
     window.electron.ipcRenderer.on('update-printers', (udpData: any) => {
