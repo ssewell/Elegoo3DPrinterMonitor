@@ -5,7 +5,7 @@ This application will automatically discover and display the print status of any
 
 ## Installation
 
-Run the installer to install and launch the application for the first time. No additional configuration is needed, as the app will automatically identify and display any compatible Elegoo MLSA printers.
+Run the installer (available under [Releases](https://github.com/ssewell/Elegoo3DPrinterMonitor/releases) to install and launch the application for the first time. No additional configuration is needed, as the app will automatically identify and display any compatible Elegoo MLSA printers.
 
 #### Windows Specific Notes
 
