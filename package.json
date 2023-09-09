@@ -1,6 +1,7 @@
 {
   "description": "Provides Status of Elegoo 3D Printers with Wifi Support",
   "main": "./src/main/main.ts",
+  "version": "0.1.1-beta",
   "scripts": {
     "build": "concurrently \"npm run build:main\" \"npm run build:renderer\"",
     "build:main": "cross-env NODE_ENV=production TS_NODE_TRANSPILE_ONLY=true webpack --config ./.erb/configs/webpack.config.main.prod.ts",
@@ -194,7 +195,12 @@
     },
     "extraResources": [
       "./assets/**"
-    ]
+    ],
+    "publish": {
+      "provider": "github",
+      "owner": "ssewell",
+      "repo": "Elegoo3DPrinterMonitor"
+    }
   },
   "devEngines": {
     "node": ">=14.x",
