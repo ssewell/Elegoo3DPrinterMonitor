@@ -21,7 +21,7 @@ export default function Printer({
   const hasProgress = status.TotalLayer > 0;
 
   return (
-    <>
+    <div className="printer-container">
       <div className="printer-item">
         <div>
           <PrinterIcon machineName={attr.MachineName} />
@@ -52,6 +52,6 @@ export default function Printer({
         </div>
       </div>
       {debug && <pre>{JSON.stringify(item, null, 2)}</pre>}
-    </>
+    </div>
   );
 }

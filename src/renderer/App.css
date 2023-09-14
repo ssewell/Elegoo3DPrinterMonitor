@@ -15,7 +15,19 @@ body {
   justify-content: center;
 }
 
+.App {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.6em;
+}
+
 /* 3D Printer Layout */
+.printer-container {
+  display: flex;
+  flex-direction: column;
+}
+
 .printer-item {
   background: rgb(51, 51, 51);
   background: linear-gradient(
@@ -27,8 +39,10 @@ body {
   padding: 30px;
   border-radius: 10px;
   display: flex;
+  flex-grow: 1;
   height: 300px;
-  width: 600px;
+  min-width: 600px;
+  max-width: 600px;
 }
 
 .printer-header {
