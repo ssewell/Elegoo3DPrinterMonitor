@@ -3,7 +3,7 @@
 /* eslint-disable guard-for-in */
 import dgram from 'dgram';
 import os from 'os';
-import { BrowserWindow } from 'electron';
+import { BrowserWindow, app } from 'electron';
 
 const PORT = 3000;
 const requestStatusMessage = Buffer.from('M99999');
@@ -68,3 +68,7 @@ export function createUDPServer(windowRef: BrowserWindow) {
     console.error('Error:', error);
   });
 }
+
+app.on('before-quit', () => {
+  socket.close();
+});
