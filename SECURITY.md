@@ -10,7 +10,7 @@ Currently, I am offering security updates and support for the following version 
 
 | Version | Supported          |
 | ------- | ------------------ |
-| 0.1.x   | :white_check_mark: |
+| 1.x.x   | :white_check_mark: |
 
 As the application evolves, new versions will be listed here with ongoing support and security updates.
 
