@@ -4,6 +4,7 @@ import PrintStatus from './PrintStatus';
 import PrinterIcon from './PrinterIcon';
 import PrinterStatus from './PrinterStatus';
 import ProgressBar from './ProgressBar';
+import TimeStatus from './TimeStatus';
 
 export default function Printer({
   item,
@@ -47,6 +48,10 @@ export default function Printer({
               <div className="current-file">{status.Filename}</div>
               <div className="subtle">{status.CurrentLayer} Layers Printed</div>
               <div className="subtle">{status.TotalLayer} Total Layers</div>
+              <TimeStatus
+                ticks={status.TotalTicks - status.CurrentTicks}
+                label="remaining"
+              />
             </>
           )}
         </div>
