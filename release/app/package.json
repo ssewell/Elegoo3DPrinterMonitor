@@ -1,6 +1,6 @@
 {
   "name": "elegoo-3d-printer-monitor",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Provides Status of Elegoo 3D Printers with Wifi Support",
   "license": "CC-BY-SA-4.0",
   "author": {
