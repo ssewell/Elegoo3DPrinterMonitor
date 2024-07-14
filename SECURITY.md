@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Hello, I am the developer behind the Elegoo 3D Printer Monitor. Your security is my priority, and I am committed to making this application as secure as possible. This document outlines the supported versions and how to report any vulnerabilities you may find. 
+Hello, I am the developer behind the Elegoo 3D Printer Monitor. Your security is my priority, and I am committed to making this application as secure as possible. This document outlines the supported versions and how to report any vulnerabilities you may find.
 
 ## Supported Versions
 
@@ -20,7 +20,7 @@ I take the security of this application seriously. If you discover a security vu
 
 ### Private Vulnerability Reporting
 
-To maintain the security of our user community, I kindly request that vulnerabilities be reported privately at first. This repository has private vulnerability reporting enabled to avoid public disclosure of security issues before a solution is implemented. 
+To maintain the security of our user community, I kindly request that vulnerabilities be reported privately at first. This repository has private vulnerability reporting enabled to avoid public disclosure of security issues before a solution is implemented.
 
 To report a vulnerability privately, please use GitHub's security advisory feature, which can be found in the "Security" tab of the repository. This platform allows us to work together towards a resolution and ensures you receive credit for your contribution.
 
