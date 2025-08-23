@@ -14,6 +14,51 @@ socket.bind(PORT, () => {
   socket.setBroadcast(true);
 });
 
+/**
+ * Compute broadcast addresses for all non-internal IPv4 interfaces
+ * without using bitwise operators (ESLint: no-bitwise compliant).
+ *
+ * For each octet, we compute the subnet block size (256 - maskOctet).
+ * The broadcast octet = networkOctet + blockSize - 1, where
+ * networkOctet = floor(ipOctet / blockSize) * blockSize.
+ */
+function getBroadcastAddresses() {
+  const interfaces = os.networkInterfaces();
+  const broadcasts: string[] = [];
+
+  for (const name in interfaces) {
+    const iface = interfaces[name];
+    if (iface) {
+      for (const addr of iface) {
+        // Early return for non-IPv4 or internal addresses (loopback)
+        if (addr.family === 'IPv4' && !addr.internal) {
+          const ipParts = addr.address.split('.').map(Number);
+          const maskParts = addr.netmask.split('.').map(Number);
+
+          // Guard against invalid lengths
+          if (ipParts.length === 4 && maskParts.length === 4) {
+            const broadcastParts = ipParts.map((ip, i) => {
+              // Calculate broadcast addresses
+              const mask = maskParts[i];
+              if (Number.isNaN(ip) || Number.isNaN(mask)) return 255;
+              if (mask === 255) return ip; // /32
+              if (mask === 0) return 255; // /0
+              const blockSize = 256 - mask; // e.g., 16 for 240
+              const network = Math.floor(ip / blockSize) * blockSize;
+              return Math.min(network + blockSize - 1, 255);
+            });
+
+            const broadcastAddress = broadcastParts.join('.');
+            broadcasts.push(broadcastAddress);
+          }
+        }
+      }
+    }
+  }
+
+  return broadcasts;
+}
+
 function getLocalIPs() {
   const interfaces = os.networkInterfaces();
   const addresses = [];
@@ -34,17 +79,22 @@ function getLocalIPs() {
 }
 
 const localIPs = getLocalIPs();
+const broadcastAddresses = getBroadcastAddresses();
+
 console.log('Local IPs:', localIPs);
+console.log('Broadcast Addresses:', broadcastAddresses);
 
 export function createUDPClient() {
   setInterval(() => {
-    socket.send(requestStatusMessage, PORT, '255.255.255.255', (err) => {
-      if (err) {
-        console.error('Error sending message:', err);
-      } else {
-        console.log('Requested 3D printer status');
-      }
-    });
+    for (const broadcastAddress of broadcastAddresses) {
+      socket.send(requestStatusMessage, PORT, broadcastAddress, (err) => {
+        if (err) {
+          console.error(`Error sending message to ${broadcastAddress}:`, err);
+        } else {
+          console.log(`Requested 3D printer status on ${broadcastAddress}`);
+        }
+      });
+    }
   }, BROADCAST_INTERVAL);
 }
 
