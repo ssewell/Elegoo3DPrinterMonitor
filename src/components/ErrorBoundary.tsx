@@ -33,8 +33,9 @@ class ErrorBoundary extends Component<Props, State> {
   }
 
   render(): ReactNode {
-    if (this.state.hasError) {
-      const { hasError, error, errorInfo } = this.state;
+    const { hasError, error, errorInfo } = this.state;
+
+    if (hasError) {
       const isDevelopment = process.env.NODE_ENV === 'development';
 
       if (isDevelopment) {
@@ -120,7 +121,9 @@ class ErrorBoundary extends Component<Props, State> {
       );
     }
 
-    return this.props.children;
+    const { children } = this.props;
+
+    return children;
   }
 }
 

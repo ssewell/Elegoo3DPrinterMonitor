@@ -1,3 +1,4 @@
+import cx from 'utils/cx';
 import { PrinterItem } from 'types/PrinterTypes';
 import { getColorForStatusCode } from 'utils/printStatusCode';
 import PrintStatus from './PrintStatus';
@@ -6,20 +7,32 @@ import PrinterStatus from './PrinterStatus';
 import ProgressBar from './ProgressBar';
 import TimeStatus from './TimeStatus';
 
+interface PrinterProps {
+  item: PrinterItem;
+  debug: boolean;
+  isOnline: boolean;
+  lastSeen: number;
+  currentTime: number;
+}
+
 export default function Printer({
   item,
   debug,
-}: {
-  item: PrinterItem;
-  debug: boolean;
-}) {
+  isOnline,
+  lastSeen,
+  currentTime,
+}: PrinterProps) {
   const attr = item.Data.Attributes;
   const status = item.Data.Status.PrintInfo;
 
-  const progressPercentage = Math.round(
-    (status.CurrentLayer / status.TotalLayer) * 100.0
-  );
   const hasProgress = status.TotalLayer > 0;
+  const progressPercentage = hasProgress
+    ? Math.round((status.CurrentLayer / status.TotalLayer) * 100.0)
+    : 0;
+  const secondsSinceLastSeen = Math.max(
+    0,
+    Math.floor((currentTime - lastSeen) / 1000)
+  );
 
   return (
     <div className="printer-container">
@@ -28,15 +41,23 @@ export default function Printer({
           <PrinterIcon machineName={attr.MachineName} />
         </div>
         <div className="printer-status">
-          <div className="printer-header">{attr.Name}</div>
+          <div className="printer-header-row">
+            <div className="printer-header">{attr.Name}</div>
+            <div
+              className={cx(
+                'status-dot',
+                isOnline ? 'status-dot-online' : 'status-dot-offline'
+              )}
+            />
+          </div>
           <div className="subtle">{attr.Resolution}</div>
           <div className="subtle">{attr.FirmwareVersion}</div>
           {/* <div className="subtle">{attr.MainboardID}</div> */}
 
-          <PrinterStatus statusCode={status.Status} />
+          <PrinterStatus statusCode={status.Status} isOnline={isOnline} />
         </div>
         <div className="print-status">
-          {hasProgress && (
+          {isOnline && hasProgress && (
             <>
               <ProgressBar
                 progress={progressPercentage}
@@ -53,6 +74,14 @@ export default function Printer({
                 label="remaining"
               />
             </>
+          )}
+          {!isOnline && (
+            <div className="offline-status">
+              <div className="offline-title">Printer offline</div>
+              <div className="subtle">
+                Last seen {secondsSinceLastSeen}s ago
+              </div>
+            </div>
           )}
         </div>
       </div>

@@ -64,7 +64,7 @@ function hasValidAttributes(
   const optionalArrayFields = ['Capabilities'];
 
   // Validate optional string fields
-  for (let i = 0; i < optionalStringFields.length; i++) {
+  for (let i = 0; i < optionalStringFields.length; i += 1) {
     const field = optionalStringFields[i];
     if (attrs[field] !== undefined && !isValidString(attrs[field])) {
       return false;
@@ -72,7 +72,7 @@ function hasValidAttributes(
   }
 
   // Validate optional number fields
-  for (let i = 0; i < optionalNumberFields.length; i++) {
+  for (let i = 0; i < optionalNumberFields.length; i += 1) {
     const field = optionalNumberFields[i];
     if (attrs[field] !== undefined && !isValidNumber(attrs[field])) {
       return false;
@@ -80,7 +80,7 @@ function hasValidAttributes(
   }
 
   // Validate optional array fields
-  for (let i = 0; i < optionalArrayFields.length; i++) {
+  for (let i = 0; i < optionalArrayFields.length; i += 1) {
     const field = optionalArrayFields[i];
     if (attrs[field] !== undefined && !isValidArray(attrs[field])) {
       return false;
@@ -108,7 +108,7 @@ function hasValidPrintInfo(printInfo: unknown): printInfo is PrintInfo {
     'ErrorNumber',
   ];
 
-  for (let i = 0; i < criticalNumberFields.length; i++) {
+  for (let i = 0; i < criticalNumberFields.length; i += 1) {
     const field = criticalNumberFields[i];
     if (info[field] !== undefined && !isValidNumber(info[field])) {
       return false;
@@ -143,7 +143,7 @@ function hasValidFileTransferInfo(
   const stringFields = ['Filename'];
 
   // Validate number fields
-  for (let i = 0; i < numberFields.length; i++) {
+  for (let i = 0; i < numberFields.length; i += 1) {
     const field = numberFields[i];
     if (info[field] !== undefined && !isValidNumber(info[field])) {
       return false;
@@ -151,7 +151,7 @@ function hasValidFileTransferInfo(
   }
 
   // Validate string fields
-  for (let i = 0; i < stringFields.length; i++) {
+  for (let i = 0; i < stringFields.length; i += 1) {
     const field = stringFields[i];
     if (info[field] !== undefined && !isValidString(info[field])) {
       return false;
@@ -171,7 +171,7 @@ function hasValidPrinterStatus(status: unknown): status is PrinterStatus {
 
   // Critical fields: must be valid numbers
   const criticalNumberFields = ['CurrentStatus', 'PreviousStatus'];
-  for (let i = 0; i < criticalNumberFields.length; i++) {
+  for (let i = 0; i < criticalNumberFields.length; i += 1) {
     const field = criticalNumberFields[i];
     if (!isValidNumber(statusObj[field])) {
       return false;

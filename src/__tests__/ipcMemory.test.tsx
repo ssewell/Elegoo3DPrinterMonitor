@@ -101,7 +101,7 @@ describe('IPC Memory Management', () => {
 
   describe('IPC Listener Cleanup', () => {
     it('should call unsubscribe functions on component unmount', () => {
-      const { unmount } = renderAppWithBoundary();
+      renderAppWithBoundary();
 
       const ipcOnSpy = window.electron.ipcRenderer.on as jest.Mock;
 
@@ -146,7 +146,7 @@ describe('IPC Memory Management', () => {
   describe('Memory Leak Prevention', () => {
     it('should prevent multiple listener registrations', () => {
       // Simulate multiple component mounts/unmounts
-      for (let i = 0; i < 5; i++) {
+      for (let i = 0; i < 5; i += 1) {
         const { unmount } = renderAppWithBoundary();
         unmount();
       }
@@ -169,7 +169,7 @@ describe('IPC Memory Management', () => {
       const renderTime: number[] = [];
 
       // Simulate rapid mount/unmount
-      for (let i = 0; i < 10; i++) {
+      for (let i = 0; i < 10; i += 1) {
         const startTime = performance.now();
 
         const { unmount } = renderAppWithBoundary();
@@ -232,8 +232,6 @@ describe('IPC Memory Management', () => {
       );
 
       renderAppWithBoundary();
-
-      const ipcOnSpy = window.electron.ipcRenderer.on as jest.Mock;
 
       // Trigger cleanup
       const { unmount } = renderAppWithBoundary();

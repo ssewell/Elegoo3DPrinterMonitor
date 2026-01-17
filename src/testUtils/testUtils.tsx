@@ -168,21 +168,19 @@ export const mockElectronAPI = {
   ipcRenderer: {
     on: jest.fn((channel: string, callback: Function) => {
       // Store callback for later use
-      mockElectronAPI.ipcRenderer._callbacks[channel] = callback;
+      mockElectronAPI.ipcRenderer.callbacks[channel] = callback;
 
       // Return unsubscribe function
       return () => {
-        console.log(`Unsubscribed from ${channel}`);
-        delete mockElectronAPI.ipcRenderer._callbacks[channel];
+        delete mockElectronAPI.ipcRenderer.callbacks[channel];
       };
     }),
     removeAllListeners: jest.fn(),
-    removeListener: jest.fn((channel: string, callback: Function) => {
+    removeListener: jest.fn((channel: string) => {
       // Simulate removeListener behavior
-      console.log(`Removed listener from ${channel}`);
-      delete mockElectronAPI.ipcRenderer._callbacks[channel];
+      delete mockElectronAPI.ipcRenderer.callbacks[channel];
     }),
-    _callbacks: {} as Record<string, Function>,
+    callbacks: {} as Record<string, Function>,
   },
 };
 
@@ -202,7 +200,7 @@ export const resetMockElectronAPI = () => {
   if (removeListenerMock.mockClear) {
     removeListenerMock.mockClear();
   }
-  mockElectronAPI.ipcRenderer._callbacks = {};
+  mockElectronAPI.ipcRenderer.callbacks = {};
 };
 
 // Helper to simulate window.electron in tests

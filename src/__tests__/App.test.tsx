@@ -12,7 +12,6 @@ import {
   INVALID_PRINTER_DATA,
   PARTIAL_PRINTER_DATA,
   VALID_PRINTER_DATA,
-  createMockIPCEvent,
   setupMockElectron,
   createConsoleSpy,
   restoreConsoleSpies,
@@ -68,8 +67,7 @@ describe('App Component Stability', () => {
 
         expect(() => {
           // Simulate IPC message with malformed data
-          const ipcOnSpy = window.electron.ipcRenderer.on as jest.Mock;
-          const handler = (window.electron.ipcRenderer as any)._callbacks[
+          const handler = (window.electron.ipcRenderer as any).callbacks[
             'update-printers'
           ];
 
@@ -98,8 +96,7 @@ describe('App Component Stability', () => {
         const jsonData = JSON.stringify(invalidData);
 
         expect(() => {
-          const ipcOnSpy = window.electron.ipcRenderer.on as jest.Mock;
-          const handler = (window.electron.ipcRenderer as any)._callbacks[
+          const handler = (window.electron.ipcRenderer as any).callbacks[
             'update-printers'
           ];
 
@@ -124,8 +121,7 @@ describe('App Component Stability', () => {
       const jsonData = JSON.stringify(VALID_PRINTER_DATA);
 
       act(() => {
-        const ipcOnSpy = window.electron.ipcRenderer.on as jest.Mock;
-        const handler = (window.electron.ipcRenderer as any)._callbacks[
+        const handler = (window.electron.ipcRenderer as any).callbacks[
           'update-printers'
         ];
 
@@ -147,8 +143,7 @@ describe('App Component Stability', () => {
         const jsonData = JSON.stringify(partialData);
 
         act(() => {
-          const ipcOnSpy = window.electron.ipcRenderer.on as jest.Mock;
-          const handler = (window.electron.ipcRenderer as any)._callbacks[
+          const handler = (window.electron.ipcRenderer as any).callbacks[
             'update-printers'
           ];
 
@@ -173,8 +168,7 @@ describe('App Component Stability', () => {
       const jsonData = JSON.stringify(invalidIdData);
 
       act(() => {
-        const ipcOnSpy = window.electron.ipcRenderer.on as jest.Mock;
-        const handler = (window.electron.ipcRenderer as any)._callbacks[
+        const handler = (window.electron.ipcRenderer as any).callbacks[
           'update-printers'
         ];
 
@@ -208,9 +202,8 @@ describe('App Component Stability', () => {
       renderAppWithBoundary();
 
       act(() => {
-        const ipcOnSpy = window.electron.ipcRenderer.on as jest.Mock;
-        const handler = (window.electron.ipcRenderer as any)._callbacks[
-          'toggle-user-debug'
+        const handler = (window.electron.ipcRenderer as any).callbacks[
+          'update-printers'
         ];
 
         if (handler) {
