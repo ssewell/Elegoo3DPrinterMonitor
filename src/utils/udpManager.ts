@@ -87,7 +87,8 @@ console.log('Broadcast Addresses:', broadcastAddresses);
 export function createUDPClient() {
   setInterval(() => {
     for (const broadcastAddress of broadcastAddresses) {
-      socket.send(requestStatusMessage, PORT, broadcastAddress, (err) => {
+      const message = Uint8Array.from(requestStatusMessage);
+      socket.send(message, PORT, broadcastAddress, (err) => {
         if (err) {
           console.error(`Error sending message to ${broadcastAddress}:`, err);
         } else {

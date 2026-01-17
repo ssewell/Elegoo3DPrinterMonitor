@@ -156,3 +156,84 @@ hr.subtle {
   color: #666;
   background-color: #666;
 }
+
+.state-panel {
+  background: #1b1b1b;
+  border: 1px solid #333;
+  border-radius: 12px;
+  padding: 20px 24px;
+  min-width: 420px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.state-panel-empty {
+  background: #1d1d1d;
+}
+
+.state-title {
+  font-size: 1.1em;
+  margin-bottom: 6px;
+}
+
+.state-body {
+  font-size: 0.9em;
+  color: #aaa;
+}
+
+.loading-spinner {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 3px solid #444;
+  border-top-color: #5fa0ff;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.printer-header-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.status-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+}
+
+.status-dot-online {
+  background: #65ad65;
+  box-shadow: 0 0 6px rgba(101, 173, 101, 0.6);
+}
+
+.status-dot-offline {
+  background: #777;
+}
+
+.badge-offline {
+  background-color: #444;
+  color: #ccc;
+}
+
+.offline-status {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.offline-title {
+  font-size: 1em;
+  color: #ddd;
+}

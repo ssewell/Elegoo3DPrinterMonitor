@@ -1,12 +1,20 @@
-import cx from '../utils/cx';
+import cx from 'utils/cx';
 
-export default function PrinterStatus({ statusCode }: { statusCode: number }) {
-  let status;
+interface PrinterStatusProps {
+  statusCode: number;
+  isOnline: boolean;
+}
 
-  if (statusCode === 0 || statusCode === 13 || statusCode === 16) {
+export default function PrinterStatus({
+  statusCode,
+  isOnline,
+}: PrinterStatusProps) {
+  let status = 'Busy';
+
+  if (!isOnline) {
+    status = 'Offline';
+  } else if (statusCode === 0 || statusCode === 13 || statusCode === 16) {
     status = 'Idle';
-  } else {
-    status = 'Busy';
   }
 
   return (
@@ -15,7 +23,8 @@ export default function PrinterStatus({ statusCode }: { statusCode: number }) {
         'badge',
         'margin-top-2',
         status === 'Idle' && 'badge-idle',
-        status === 'Busy' && 'badge-busy'
+        status === 'Busy' && 'badge-busy',
+        status === 'Offline' && 'badge-offline'
       )}
     >
       <div className="badge-items">
