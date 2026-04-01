@@ -5,6 +5,9 @@ on:
     branches:
       - main
 
+permissions:
+  contents: read
+
 jobs:
   publish:
     runs-on: ${{ matrix.os }}
@@ -20,7 +23,7 @@ jobs:
       - name: Install Node and NPM
         uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: 24
 
       - name: Install dependencies
         run: |
