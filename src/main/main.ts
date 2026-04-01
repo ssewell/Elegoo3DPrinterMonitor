@@ -64,11 +64,13 @@ const createWindow = async () => {
     return path.join(RESOURCES_PATH, ...paths);
   };
 
+  const windowIcon = process.platform === 'win32' ? 'icon.ico' : 'icon.png';
+
   mainWindow = new BrowserWindow({
     show: false,
     width: 700,
     height: 442,
-    icon: getAssetPath('icon.png'),
+    icon: getAssetPath(windowIcon),
     webPreferences: {
       preload: app.isPackaged
         ? path.join(__dirname, 'preload.js')
