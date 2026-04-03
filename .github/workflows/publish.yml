@@ -18,7 +18,7 @@ jobs:
 
     steps:
       - name: Checkout git repo
-        uses: actions/checkout@6.0.2
+        uses: actions/checkout@v6.0.2
 
       - name: Install Node and NPM
         uses: actions/setup-node@v6
