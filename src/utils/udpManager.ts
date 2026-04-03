@@ -9,6 +9,8 @@ const PORT = 3000;
 const requestStatusMessage = Buffer.from('M99999');
 const socket = dgram.createSocket('udp4');
 const BROADCAST_INTERVAL = 1000; // 1 second
+let broadcastTimer: ReturnType<typeof setInterval> | null = null;
+let isShuttingDown = false;
 
 socket.bind(PORT, () => {
   socket.setBroadcast(true);
@@ -85,7 +87,15 @@ console.log('Local IPs:', localIPs);
 console.log('Broadcast Addresses:', broadcastAddresses);
 
 export function createUDPClient() {
-  setInterval(() => {
+  if (broadcastTimer) {
+    return;
+  }
+
+  broadcastTimer = setInterval(() => {
+    if (isShuttingDown) {
+      return;
+    }
+
     for (const broadcastAddress of broadcastAddresses) {
       const message = Uint8Array.from(requestStatusMessage);
       socket.send(message, PORT, broadcastAddress, (err) => {
@@ -121,5 +131,12 @@ export function createUDPServer(windowRef: BrowserWindow) {
 }
 
 app.on('before-quit', () => {
+  isShuttingDown = true;
+
+  if (broadcastTimer) {
+    clearInterval(broadcastTimer);
+    broadcastTimer = null;
+  }
+
   socket.close();
 });
