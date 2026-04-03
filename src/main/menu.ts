@@ -3,6 +3,7 @@ import {
   Menu,
   shell,
   BrowserWindow,
+  MenuItem,
   MenuItemConstructorOptions,
 } from 'electron';
 
@@ -121,7 +122,7 @@ export default class MenuBuilder {
           label: 'Debug Mode',
           type: 'checkbox',
           checked: false,
-          click: (menuItem: { checked: any }) => {
+          click: (menuItem: MenuItem) => {
             const focusedWindow = BrowserWindow.getFocusedWindow();
             focusedWindow?.webContents.send(
               'toggle-user-debug',
@@ -152,7 +153,7 @@ export default class MenuBuilder {
           label: 'Debug Mode',
           type: 'checkbox',
           checked: false,
-          click: (menuItem: { checked: any }) => {
+          click: (menuItem: MenuItem) => {
             const focusedWindow = BrowserWindow.getFocusedWindow();
             focusedWindow?.webContents.send(
               'toggle-user-debug',
@@ -206,8 +207,8 @@ export default class MenuBuilder {
     return [subMenuAbout, subMenuEdit, subMenuView, subMenuWindow, subMenuHelp];
   }
 
-  buildDefaultTemplate() {
-    const templateDefault = [
+  buildDefaultTemplate(): MenuItemConstructorOptions[] {
+    const templateDefault: MenuItemConstructorOptions[] = [
       {
         label: '&File',
         submenu: [
@@ -246,7 +247,7 @@ export default class MenuBuilder {
                   label: 'Debug Mode',
                   type: 'checkbox',
                   checked: false,
-                  click: (menuItem: { checked: any }) => {
+                  click: (menuItem: MenuItem) => {
                     const focusedWindow = BrowserWindow.getFocusedWindow();
                     focusedWindow?.webContents.send(
                       'toggle-user-debug',
@@ -276,7 +277,7 @@ export default class MenuBuilder {
                   label: 'Debug Mode',
                   type: 'checkbox',
                   checked: false,
-                  click: (menuItem: { checked: any }) => {
+                  click: (menuItem: MenuItem) => {
                     const focusedWindow = BrowserWindow.getFocusedWindow();
                     focusedWindow?.webContents.send(
                       'toggle-user-debug',
