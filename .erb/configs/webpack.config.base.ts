@@ -47,7 +47,7 @@ const configuration: webpack.Configuration = {
     // There is no need to add aliases here, the paths in tsconfig get mirrored
     plugins: [
       new TsconfigPathsPlugins({
-        configFile: webpackPaths.rootPath + '/tsconfig.json',
+        configFile: `${webpackPaths.rootPath}/tsconfig.json`,
         baseUrl: webpackPaths.rootPath,
         extensions,
       }),
