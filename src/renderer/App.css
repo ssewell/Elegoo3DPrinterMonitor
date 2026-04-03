@@ -200,27 +200,6 @@ hr.subtle {
   }
 }
 
-.printer-header-row {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.status-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 999px;
-}
-
-.status-dot-online {
-  background: #65ad65;
-  box-shadow: 0 0 6px rgba(101, 173, 101, 0.6);
-}
-
-.status-dot-offline {
-  background: #777;
-}
-
 .badge-offline {
   background-color: #444;
   color: #ccc;

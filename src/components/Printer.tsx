@@ -1,4 +1,3 @@
-import cx from 'utils/cx';
 import { PrinterItem } from 'types/PrinterTypes';
 import { getColorForStatusCode } from 'utils/printStatusCode';
 import PrintStatus from './PrintStatus';
@@ -41,15 +40,7 @@ export default function Printer({
           <PrinterIcon machineName={attr.MachineName} />
         </div>
         <div className="printer-status">
-          <div className="printer-header-row">
-            <div className="printer-header">{attr.Name}</div>
-            <div
-              className={cx(
-                'status-dot',
-                isOnline ? 'status-dot-online' : 'status-dot-offline'
-              )}
-            />
-          </div>
+          <div className="printer-header">{attr.Name}</div>
           <div className="subtle">{attr.Resolution}</div>
           <div className="subtle">{attr.FirmwareVersion}</div>
           {/* <div className="subtle">{attr.MainboardID}</div> */}
